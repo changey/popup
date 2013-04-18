@@ -28583,3 +28583,10 @@ ActionController::RoutingError (No route matches [GET] "/assets/images/marker-ic
 
 
   Rendered /Users/changey/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.11/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-18 01:23:18 -0400
+Processing by PopsController#index as */*
+  [1m[35mPop Load (0.1ms)[0m  SELECT "pops".* FROM "pops" 
+  Rendered pops/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.1ms)
