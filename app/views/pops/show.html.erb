@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Lat:</b>
+  <%= @pop.lat %>
+</p>
+
+<p>
+  <b>Long:</b>
+  <%= @pop.long %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @pop.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_pop_path(@pop) %> |
+<%= link_to 'Back', pops_path %>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Leaflet Quick Start Guide Example</title>
+		<meta charset="utf-8" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- <link rel="stylesheet" href="../dist/leaflet.css" /> -->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+	</head>
+	<body>
+
+		<div id="map" style="width: 600px; height: 400px"></div>
+		<p id="lala">
+			baba
+		</p>
+
+		<!-- <script src="../dist/leaflet.js"></script> -->
+		<script>
+		    
+		    
+			var map = L.map('map').setView([42.37, -71.03], 12);
+
+			L.tileLayer('http://{s}.tile.cloudmade.com/1dfc20ee65ee40638ed29eb7b9975515/997/256/{z}/{x}/{y}.png', {
+				maxZoom : 18,
+				attribution : 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+			}).addTo(map);
+
+			L.marker([42.37, -71.03], {
+				'title' : 'baba'
+			}).addTo(map).bindPopup("<p contenteditable=\"true\">original</p><button >Done editing</button><br />").openPopup();
+
+			var marker = new Array();
+
+			var popup = L.popup();
+			var i = 0;
+			var index;
+
+			function onMapClick(e) {
+				
+
+				var lat = e.latlng.lat.toString();
+				var lng = e.latlng.lng.toString();
+				
+				var domelem = document.createElement('div');
+				domelem.contenteditable="true";
+				var domelem2 = document.createElement('p');
+				domelem2.contenteditable="true";
+			    domelem2.value = "lala";
+			    domelem2.innerHTML = "lala";
+			    domelem2.id=lat+lng;
+			    
+				
+				
+				domelem.appendChild(domelem2);
+	
+				var domelem3 = document.createElement('button');
+				var t=document.createTextNode("done editing");
+				domelem3.appendChild(t);
+				domelem3.id="t"+lat+lng;
+				domelem3.onclick = function() {
+					alert(document.getElementById(lat+lng).innerHTML);
+					
+					// // do whatever else you want to do - open accordion etc
+				 };
+				domelem.appendChild(domelem3);
+				
+				//console.log(lat);
+				var mapop = new L.LatLng(e.latlng.lat, e.latlng.lng), poppy = new L.Marker(mapop, {
+					'title' : 'baba'
+				});
+				marker.push(poppy);
+				console.log(marker[0]);
+				//	map.removeLayer(marker[0]);
+
+				poppy.addTo(map).bindPopup(domelem).openPopup();
+				document.getElementById(lat+lng).contentEditable = "true";
+				poppy._icon.title = i;
+				i++;
+
+			}
+
+
+			$(document).ready(function() {
+				console.log("lala");
+
+				$('body').keyup(function(e) {
+					// map.removeLayer(marker[index]);
+					// marker[index].addTo(map).bindPopup("<p class=\"location\" contenteditable=\"true\">new</p><button >Done editing</button><br />").openPopup();
+
+				});
+
+				$('#map').mousedown(function(e) {
+					index = e.target.title;
+					var text = $('#pop').val();
+
+					console.log(e.target.title);
+					console.log(text);
+				});
+				$('#baba').onclick(function(e) {
+					console.log("fafa");
+				});
+
+			});
+
+			map.on('click', onMapClick);
+
+			function createPoint() {
+				var lat = document.getElementById('lat').value;
+				var long = document.getElementById('long').value;
+				var pop = document.getElementById('popuptext').value;
+				var latint = parseFloat(lat);
+				var longint = parseFloat(long);
+				var mora = new L.LatLng(latint, longint), MSD = new L.Marker(mora);
+				map.addLayer(MSD);
+				MSD.bindPopup("<p contenteditable=\"true\">" + pop + "</p><button >Done editing</button><br />").openPopup();
+
+			}
+			
+			function addText(lat, lng, text){
+				
+			}
+
+		</script>
+	</body>
+</html>
