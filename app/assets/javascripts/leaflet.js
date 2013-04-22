@@ -1180,11 +1180,11 @@
 			var e = t + "Url";
 			if (this.options[e])
 				return this.options[e];
-			n.Browser.retina && "icon" === t && (t += "@2x");
-			var i = n.Icon.Default.imagePath;
+			//n.Browser.retina && "icon" === t && (t += "@2x");
+			var i = 'assets/images/marker-icon.png';
 			if (!i)
 				throw Error("Couldn't autodetect L.Icon.Default.imagePath, set it manually.");
-			return i + "/marker-" + t + ".png"
+			return i 
 		}
 	}), n.Icon.Default.imagePath = function() {
 		var t, i, n, o, s = e.getElementsByTagName("script"), a = /\/?leaflet[\-\._]?([\w\-\._]*)\.js\??/;
