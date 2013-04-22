@@ -1,31 +1,11 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Leaflet Quick Start Guide Example</title>
-		<meta charset="utf-8" />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<!-- <link rel="stylesheet" href="../dist/leaflet.css" /> -->
-		<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
-	</head>
-	<body>
-
-		<div id="map" style="width: 600px; height: 400px"></div>
-		<p id="lala">
-			baba
-		</p>
-
-		<!-- <script src="../dist/leaflet.js"></script> -->
-		<script>
-			var map = L.map('map').setView([42.37, -71.03], 12);
+var map = L.map('map').setView([42.37, -71.03], 12);
 
 			L.tileLayer('http://{s}.tile.cloudmade.com/1dfc20ee65ee40638ed29eb7b9975515/997/256/{z}/{x}/{y}.png', {
 				maxZoom : 18,
 				attribution : 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
 			}).addTo(map);
-
-			L.marker([42.37, -71.03], {
+			
+L.marker([42.37, -71.03], {
 				'title' : 'baba'
 			}).addTo(map).bindPopup("<p contenteditable=\"true\">original</p><button >Done editing</button><br />").openPopup();
 
@@ -131,10 +111,3 @@
 			});
 
 			map.on('click', onMapClick);
-
-
-
-
-		</script>
-	</body>
-</html>
