@@ -1,5 +1,9 @@
 Popup::Application.routes.draw do
   resources :pops
+  
+   match '/updatecontent', to: 'pops#updatecontent'
+   match '/newtext', to: 'pops#newtext'
+   match '/fetch', to: 'pops#fetch'
 
 
   # The priority is based upon order of creation:

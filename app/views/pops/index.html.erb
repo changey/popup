@@ -34,19 +34,30 @@
 			var popup = L.popup();
 			var i = 0;
 			var index;
+			var latlng;
 
-			function onMapClick(e) {
+			$.getJSON('fetch', function(data) {
+				$.each(data, function(index, value) {
 
-				var lat = e.latlng.lat.toString();
-				var lng = e.latlng.lng.toString();
+					latlng = index.split(" ");
+					add_pop(parseFloat(latlng[0]), parseFloat(latlng[1]),value);
+					// L.marker([parseFloat(latlng[0]), parseFloat(latlng[1])], {
+					// }).addTo(map).bindPopup("<p contenteditable=\"true\">"+value+"</p><button >Done editing</button><br />")
 
+					//add_note(cell, cellText, value, index);
+				});
+
+			});
+			
+			function add_pop(lat,lng,comment){
 				var domelem = document.createElement('div');
 				domelem.contenteditable = "true";
 				var domelem2 = document.createElement('p');
 				domelem2.contenteditable = "true";
-				domelem2.value = "lala";
-				domelem2.innerHTML = "lala";
-				domelem2.id = lat + lng;
+				//domelem2.value = "lala";
+				domelem2.innerHTML = comment;
+				domelem2.id = lat +" "+ lng;
+				console.log(domelem2.id);
 
 				domelem.appendChild(domelem2);
 
@@ -55,32 +66,87 @@
 				domelem3.appendChild(t);
 				domelem3.id = "t" + lat + lng;
 				domelem3.onclick = function() {
-					alert(document.getElementById(lat + lng).innerHTML);
-					// $.ajax({
-						// type : 'POST',
-						// url : 'notes/1/updatecontent',
-						// data : data,
-						// success : function(data) {
-// 
-						// }
-					// });
+				
+					$.ajax({
+						type : 'GET',
+						url : 'updatecontent?name=' + lat + " " + lng + '&content=' + document.getElementById(lat +" "+ lng).innerHTML,
+						//data : data,
+						success : function(data) {
+							console.log("lala");
+						}
+					});
 
-					// // do whatever else you want to do - open accordion etc
 				};
 				domelem.appendChild(domelem3);
 
-				//console.log(lat);
-				var mapop = new L.LatLng(e.latlng.lat, e.latlng.lng), poppy = new L.Marker(mapop, {
-					'title' : 'baba'
+				var mapop = new L.LatLng(lat, lng), poppy = new L.Marker(mapop, {
+					
 				});
 				marker.push(poppy);
-				console.log(marker[0]);
-				//	map.removeLayer(marker[0]);
 
 				poppy.addTo(map).bindPopup(domelem).openPopup();
-				document.getElementById(lat + lng).contentEditable = "true";
+				document.getElementById(lat +" "+ lng).contentEditable = "true";
 				poppy._icon.title = i;
 				i++;
+			}
+
+			function onMapClick(e) {
+
+				var lat = e.latlng.lat.toString();
+				var lng = e.latlng.lng.toString();
+				var name = lat + " " + lng;
+
+				$.ajax({
+					type : 'GET',
+					url : 'newtext?name=' + name,
+					success : function(data) {
+
+					}
+				});
+				
+				add_pop(parseFloat(lat), parseFloat(lng),"Enter text");
+
+				// var domelem = document.createElement('div');
+				// domelem.contenteditable = "true";
+				// var domelem2 = document.createElement('p');
+				// domelem2.contenteditable = "true";
+				// domelem2.value = "lala";
+				// domelem2.innerHTML = "lala";
+				// domelem2.id = lat +" "+ lng;
+// 
+				// domelem.appendChild(domelem2);
+// 
+				// var domelem3 = document.createElement('button');
+				// var t = document.createTextNode("done editing");
+				// domelem3.appendChild(t);
+				// domelem3.id = "t" + lat + lng;
+				// domelem3.onclick = function() {
+// 	
+					// $.ajax({
+						// type : 'GET',
+						// url : 'updatecontent?name=' + lat + " " + lng + '&content=' + document.getElementById(lat + lng).innerHTML,
+						// //data : data,
+						// success : function(data) {
+							// console.log("lala");
+						// }
+					// });
+// 
+					// // // do whatever else you want to do - open accordion etc
+				// };
+				// domelem.appendChild(domelem3);
+// 
+				// //console.log(lat);
+				// var mapop = new L.LatLng(e.latlng.lat, e.latlng.lng), poppy = new L.Marker(mapop, {
+					// 'title' : 'baba'
+				// });
+				// marker.push(poppy);
+				// console.log(marker[0]);
+				// //	map.removeLayer(marker[0]);
+// 
+				// poppy.addTo(map).bindPopup(domelem).openPopup();
+				// document.getElementById(lat +" "+ lng).contentEditable = "true";
+				// poppy._icon.title = i;
+				// i++;
 
 			}
 

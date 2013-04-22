@@ -1,4 +1,22 @@
 class PopsController < ApplicationController
+  
+  def fetch
+    @pop=Pop.new
+    
+    render :json => @pop.getContent
+  end
+  
+  def newtext
+    @pop = Pop.new(name:[params[:name]][0])
+    @pop.save
+    
+  end
+  
+  def updatecontent
+    @pop=Pop.new
+    @pop.updateContent([params[:name]][0], [params[:content]][0])
+  end
+  
   # GET /pops
   # GET /pops.json
   def index

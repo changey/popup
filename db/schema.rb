@@ -14,11 +14,12 @@
 ActiveRecord::Schema.define(:version => 20130408062627) do
 
   create_table "pops", :force => true do |t|
+    t.string   "name",       :default => ""
     t.decimal  "lat"
     t.decimal  "long"
-    t.string   "comment"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "comment",    :default => ""
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
 end
