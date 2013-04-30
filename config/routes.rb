@@ -1,4 +1,6 @@
 Popup::Application.routes.draw do
+  get "users/new"
+
   resources :pops
   
    match '/updatecontent', to: 'pops#updatecontent'

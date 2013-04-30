@@ -5,6 +5,8 @@
 		<meta charset="utf-8" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
+		<link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
 
 		<!-- <link rel="stylesheet" href="../dist/leaflet.css" /> -->
 		<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
@@ -12,12 +14,12 @@
 	<body>
 
 		<div id="map" style="width: 600px; height: 400px"></div>
-		<p id="lala">
-			baba
-		</p>
+		<div id="map2" style="width: 600px; height: 400px"></div>
 
 		<!-- <script src="../dist/leaflet.js"></script> -->
 		<script>
+			
+
 			var map = L.map('map').setView([42.37, -71.03], 12);
 
 			L.tileLayer('http://{s}.tile.cloudmade.com/1dfc20ee65ee40638ed29eb7b9975515/997/256/{z}/{x}/{y}.png', {
@@ -40,7 +42,7 @@
 				$.each(data, function(index, value) {
 
 					latlng = index.split(" ");
-					add_pop(parseFloat(latlng[0]), parseFloat(latlng[1]),value);
+					add_pop(parseFloat(latlng[0]), parseFloat(latlng[1]), value);
 					// L.marker([parseFloat(latlng[0]), parseFloat(latlng[1])], {
 					// }).addTo(map).bindPopup("<p contenteditable=\"true\">"+value+"</p><button >Done editing</button><br />")
 
@@ -48,15 +50,15 @@
 				});
 
 			});
-			
-			function add_pop(lat,lng,comment){
+
+			function add_pop(lat, lng, comment) {
 				var domelem = document.createElement('div');
 				domelem.contenteditable = "true";
 				var domelem2 = document.createElement('p');
 				domelem2.contenteditable = "true";
 				//domelem2.value = "lala";
 				domelem2.innerHTML = comment;
-				domelem2.id = lat +" "+ lng;
+				domelem2.id = lat + " " + lng;
 
 				domelem.appendChild(domelem2);
 
@@ -65,10 +67,10 @@
 				domelem3.appendChild(t);
 				domelem3.id = "t" + lat + lng;
 				domelem3.onclick = function() {
-				
+
 					$.ajax({
 						type : 'GET',
-						url : 'updatecontent?name=' + lat + " " + lng + '&content=' + document.getElementById(lat +" "+ lng).innerHTML,
+						url : 'updatecontent?name=' + lat + " " + lng + '&content=' + document.getElementById(lat + " " + lng).innerHTML,
 						//data : data,
 						success : function(data) {
 							console.log("lala");
@@ -79,12 +81,12 @@
 				domelem.appendChild(domelem3);
 
 				var mapop = new L.LatLng(lat, lng), poppy = new L.Marker(mapop, {
-					
+
 				});
 				marker.push(poppy);
 
 				poppy.addTo(map).bindPopup(domelem).openPopup();
-				document.getElementById(lat +" "+ lng).contentEditable = "true";
+				document.getElementById(lat + " " + lng).contentEditable = "true";
 				poppy._icon.title = i;
 				i++;
 			}
@@ -102,8 +104,8 @@
 
 					}
 				});
-				
-				add_pop(parseFloat(lat), parseFloat(lng),"Enter text");
+
+				add_pop(parseFloat(lat), parseFloat(lng), "Enter text");
 
 			}
 
@@ -131,9 +133,6 @@
 			});
 
 			map.on('click', onMapClick);
-
-
-
 
 		</script>
 	</body>
