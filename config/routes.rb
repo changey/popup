@@ -3,12 +3,17 @@ Popup::Application.routes.draw do
 
   resources :pops
   resources :users
-  
-   match '/updatecontent', to: 'pops#updatecontent'
-   match '/newtext', to: 'pops#newtext'
-   match '/fetch', to: 'pops#fetch'
-   match '/signup', to: 'users#new'
 
+  match '/updatecontent', to: 'pops#updatecontent'
+  match '/newtext', to: 'pops#newtext'
+  match '/fetch', to: 'pops#fetch'
+  resources :sessions, only: [:new, :create, :destroy]
+  
+  match '/signup', to: 'users#new'
+  
+  match '/signin', to: 'sessions#new'
+  
+  match '/signout', to: 'sessions#destroy', via: :delete
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -59,11 +64,11 @@ Popup::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'pops#index'
+  root :to => 'pops#index'
 
-  # See how all your routes lay out with "rake routes"
+# See how all your routes lay out with "rake routes"
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+# This is a legacy wild controller route that's not recommended for RESTful applications.
+# Note: This route will make all actions in every controller accessible via GET requests.
+# match ':controller(/:action(/:id))(.:format)'
 end
