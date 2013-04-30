@@ -2,10 +2,12 @@ Popup::Application.routes.draw do
   get "users/new"
 
   resources :pops
+  resources :users
   
    match '/updatecontent', to: 'pops#updatecontent'
    match '/newtext', to: 'pops#newtext'
    match '/fetch', to: 'pops#fetch'
+   match '/signup', to: 'users#new'
 
 
   # The priority is based upon order of creation:
