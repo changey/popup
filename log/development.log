@@ -58375,3 +58375,188 @@ Processing by MapsController#fetch as JSON
   Parameters: {"mapid"=>"1"}
   [1m[36mPop Load (0.3ms)[0m  [1mSELECT "pops".* FROM "pops" WHERE (map_id='1')[0m
 Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2013-05-13 01:37:57 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'jB8oXbHXXEpcqe4moJP2GA' LIMIT 1[0m
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-05-13 01:37:57 -0400
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-05-13 01:37:57 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-13 01:37:59 -0400
+Processing by PopsController#index as HTML
+  [1m[35mPop Load (0.2ms)[0m  SELECT "pops".* FROM "pops" 
+  Rendered pops/index.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'jB8oXbHXXEpcqe4moJP2GA' LIMIT 1[0m
+  Rendered layouts/_header.html.erb (1.5ms)
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-05-13 01:37:59 -0400
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-05-13 01:37:59 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/fetch" for 127.0.0.1 at 2013-05-13 01:37:59 -0400
+Processing by MapsController#fetch as JSON
+  [1m[35mPop Load (0.2ms)[0m  SELECT "pops".* FROM "pops" WHERE (map_id=NULL)
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/maps/3" for 127.0.0.1 at 2013-05-13 01:38:02 -0400
+Processing by MapsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mMap Load (0.1ms)[0m  [1mSELECT "maps".* FROM "maps" WHERE "maps"."id" = ? LIMIT 1[0m  [["id", "3"]]
+Completed 404 Not Found in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find Map with id=3):
+  app/controllers/maps_controller.rb:40:in `show'
+
+
+  Rendered /Users/changey/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/changey/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/changey/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.9ms)
+
+
+Started GET "/maps/2" for 127.0.0.1 at 2013-05-13 01:38:06 -0400
+Processing by MapsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mMap Load (0.1ms)[0m  SELECT "maps".* FROM "maps" WHERE "maps"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered maps/show.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'jB8oXbHXXEpcqe4moJP2GA' LIMIT 1[0m
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-05-13 01:38:06 -0400
+Served asset /application.css - 304 Not Modified (20ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-05-13 01:38:06 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/maps/getmapid" for 127.0.0.1 at 2013-05-13 01:38:06 -0400
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"getmapid"}
+  [1m[35mMap Load (0.1ms)[0m  SELECT "maps".* FROM "maps" WHERE "maps"."id" = ? LIMIT 1  [["id", "getmapid"]]
+Completed 404 Not Found in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find Map with id=getmapid):
+  app/controllers/maps_controller.rb:40:in `show'
+
+
+  Rendered /Users/changey/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/changey/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/changey/.rvm/gems/ruby-1.9.3-p374/gems/actionpack-3.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.9ms)
+
+
+Started GET "/maps/" for 127.0.0.1 at 2013-05-13 01:38:13 -0400
+Processing by MapsController#index as HTML
+  [1m[36mMap Load (0.2ms)[0m  [1mSELECT "maps".* FROM "maps" [0m
+  Rendered maps/index.html.erb within layouts/application (2.6ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = 'jB8oXbHXXEpcqe4moJP2GA' LIMIT 1
+  Rendered layouts/_header.html.erb (1.5ms)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-05-13 01:38:13 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-05-13 01:38:13 -0400
+Served asset /application.css - 304 Not Modified (6ms)
+
+
+Started DELETE "/signout" for 127.0.0.1 at 2013-05-13 01:41:29 -0400
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"fDl8PGeISZ3rgl4e/zrbinZv3xg0/yZfcH7A/hmT4s8="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-13 01:41:29 -0400
+Processing by PopsController#index as HTML
+  [1m[36mPop Load (0.2ms)[0m  [1mSELECT "pops".* FROM "pops" [0m
+  Rendered pops/index.html.erb within layouts/application (0.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" IS NULL LIMIT 1
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-05-13 01:41:29 -0400
+Served asset /application.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-05-13 01:41:29 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/fetch" for 127.0.0.1 at 2013-05-13 01:41:29 -0400
+Processing by MapsController#fetch as JSON
+  [1m[36mPop Load (0.1ms)[0m  [1mSELECT "pops".* FROM "pops" WHERE (map_id=NULL)[0m
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-13 01:41:38 -0400
+Connecting to database specified by database.yml
+Processing by PopsController#index as HTML
+  [1m[36mPop Load (0.1ms)[0m  [1mSELECT "pops".* FROM "pops" [0m
+  Rendered pops/index.html.erb within layouts/application (3.2ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" IS NULL LIMIT 1
+  Rendered layouts/_header.html.erb (17.8ms)
+Completed 200 OK in 80ms (Views: 49.5ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-05-13 01:41:38 -0400
+Served asset /application.css - 304 Not Modified (23ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-05-13 01:41:38 -0400
+Served asset /application.js - 304 Not Modified (54ms)
+
+
+Started GET "/fetch" for 127.0.0.1 at 2013-05-13 01:41:38 -0400
+Processing by MapsController#fetch as JSON
+  [1m[36mPop Load (0.2ms)[0m  [1mSELECT "pops".* FROM "pops" WHERE (map_id=NULL)[0m
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-13 01:42:06 -0400
+Processing by PopsController#index as HTML
+  [1m[35mPop Load (0.3ms)[0m  SELECT "pops".* FROM "pops" 
+  Rendered pops/index.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" IS NULL LIMIT 1[0m
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-05-13 01:42:06 -0400
+Compiled custom.css  (1853ms)  (pid 12125)
+Compiled application.css  (2ms)  (pid 12125)
+Served asset /application.css - 200 OK (1954ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-05-13 01:42:08 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/fetch" for 127.0.0.1 at 2013-05-13 01:42:08 -0400
+Processing by MapsController#fetch as JSON
+  [1m[35mPop Load (0.2ms)[0m  SELECT "pops".* FROM "pops" WHERE (map_id=NULL)
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
