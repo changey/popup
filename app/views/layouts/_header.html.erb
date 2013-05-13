@@ -8,15 +8,52 @@
 						<%= link_to "Home", root_path %>
 					</li>
 					<% if signed_in? %>
+					<li class="dropdown" id="accountmenu">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Maps<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a tabindex="-1" href="/maps/1">Map 1</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="/maps/2">Map 2</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="/maps/3">Map 3</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="/maps/4">Map 4</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="/maps/5">Map 5</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="/maps/6">Map 6</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="/maps/7">Map 7</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="/maps/8">Map 8</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="/maps/9">Map 9</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="/maps/10">Map 10</a>
+							</li>
+						</ul>
+
+					</li>
 					<li>
 						<%= link_to "My account", user_path(current_user) %>
 					</li>
 					<li>
 						<%= link_to "Sign out", signout_path, method: "delete" %>
 					</li>
-					
+
 					<% else %>
-					
+
 					<li>
 						<%= link_to "Sign in", signin_path %>
 					</li>

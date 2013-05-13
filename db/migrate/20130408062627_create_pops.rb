@@ -5,6 +5,7 @@ class CreatePops < ActiveRecord::Migration
       t.decimal :lat
       t.decimal :long
       t.string :comment, :default=>""
+      t.string :map_id
 
       t.timestamps
     end

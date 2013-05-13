@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Leaflet Quick Start Guide Example</title>
+		<meta charset="utf-8" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
+		<link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
+
+		<!-- <link rel="stylesheet" href="../dist/leaflet.css" /> -->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+	</head>
+	<body>
+		<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+		<br>
+		</br>
+		<div id="map" style="width: 600px; height: 400px"></div>
+		<div id="map2" style="width: 600px; height: 400px"></div>
+
+		<!-- <script src="../dist/leaflet.js"></script> -->
+		<script>
+			var mapid = "";
+
+			var map = L.map('map').setView([42.37, -71.03], 12);
+
+			L.tileLayer('http://{s}.tile.cloudmade.com/1dfc20ee65ee40638ed29eb7b9975515/997/256/{z}/{x}/{y}.png', {
+				maxZoom : 18,
+				attribution : 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+			}).addTo(map);
+
+			L.marker([42.37, -71.03], {
+				'title' : 'baba'
+			}).addTo(map).bindPopup("<p contenteditable=\"true\">original</p><button >Done editing</button><br />").openPopup();
+
+			var marker = new Array();
+
+			var popup = L.popup();
+			var i = 0;
+			var index;
+			var latlng;
+
+			$.ajax({
+				type : 'GET',
+				url : 'getmapid',
+				success : function(data) {
+					//	console.log(data);
+					mapid = data;
+
+					$.getJSON('../../fetch?mapid=' + mapid, function(data) {
+						$.each(data, function(index, value) {
+
+							latlng = index.split(" ");
+							add_pop(parseFloat(latlng[0]), parseFloat(latlng[1]), value);
+
+						});
+					});
+
+				}
+			});
+
+			function add_pop(lat, lng, comment) {
+				var domelem = document.createElement('div');
+				domelem.contenteditable = "true";
+				var domelem2 = document.createElement('p');
+				domelem2.contenteditable = "true";
+				//domelem2.value = "lala";
+				domelem2.innerHTML = comment;
+				domelem2.id = lat + " " + lng;
+
+				domelem.appendChild(domelem2);
+
+				var domelem3 = document.createElement('button');
+				var t = document.createTextNode("done editing");
+				domelem3.appendChild(t);
+				domelem3.id = "t" + lat + lng;
+				domelem3.onclick = function() {
+
+					$.ajax({
+						type : 'GET',
+						url : 'getmapid',
+						success : function(data) {
+							//	console.log(data);
+							mapid = data;
+
+							$.ajax({
+								type : 'GET',
+								url : '../../updatecontent?name=' + lat + " " + lng + '&content=' + document.getElementById(lat + " " + lng).innerHTML + '&mapid=' + mapid,
+								//data : data,
+								success : function(data) {
+									console.log("lala");
+								}
+							});
+						}
+					});
+
+				};
+				domelem.appendChild(domelem3);
+
+				var mapop = new L.LatLng(lat, lng), poppy = new L.Marker(mapop, {
+
+				});
+				marker.push(poppy);
+
+				poppy.addTo(map).bindPopup(domelem).openPopup();
+				document.getElementById(lat + " " + lng).contentEditable = "true";
+				poppy._icon.title = i;
+				i++;
+			}
+
+			function onMapClick(e) {
+
+				var lat = e.latlng.lat.toString();
+				var lng = e.latlng.lng.toString();
+				var name = lat + " " + lng;
+
+				$.ajax({
+					type : 'GET',
+					url : 'getmapid',
+					success : function(data) {
+						//	console.log(data);
+						mapid = data;
+
+						$.ajax({
+							type : 'GET',
+							url : '../../newtext?name=' + name + '&mapid=' + mapid,
+							success : function(data) {
+
+							}
+						});
+
+					}
+				});
+
+				add_pop(parseFloat(lat), parseFloat(lng), "Enter text");
+
+			}
+
+
+			$(document).ready(function() {
+
+				$('#map').mousedown(function(e) {
+					index = e.target.title;
+					var text = $('#pop').val();
+
+					console.log(e.target.title);
+					console.log(text);
+				});
+				$('#baba').onclick(function(e) {
+					console.log("fafa");
+				});
+
+			});
+
+			map.on('click', onMapClick);
+
+		</script>
+	</body>
+</html>

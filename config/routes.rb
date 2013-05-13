@@ -1,12 +1,16 @@
 Popup::Application.routes.draw do
+  resources :maps
+
+
   get "users/new"
 
   resources :pops
   resources :users
 
-  match '/updatecontent', to: 'pops#updatecontent'
-  match '/newtext', to: 'pops#newtext'
-  match '/fetch', to: 'pops#fetch'
+  match '/updatecontent', to: 'maps#updatecontent'
+  match '/newtext', to: 'maps#newtext'
+  match '/fetch', to: 'maps#fetch'
+  match '/maps/:id/getmapid', to: 'maps#getmapid'
   resources :sessions, only: [:new, :create, :destroy]
   
   match '/signup', to: 'users#new'
@@ -14,6 +18,8 @@ Popup::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   
   match '/signout', to: 'sessions#destroy', via: :delete
+  
+  match 'maps/:id' => 'maps#next', :as => :next
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

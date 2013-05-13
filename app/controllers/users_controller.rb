@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
 
   private
 

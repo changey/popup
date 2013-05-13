@@ -1171,7 +1171,7 @@
 		return new n.Icon(t)
 	}, n.Icon.Default = n.Icon.extend({
 		options : {
-			iconSize : new n.Point(25, 41),
+			iconSize : new n.Point(41, 41),
 			iconAnchor : new n.Point(12, 41),
 			popupAnchor : new n.Point(1, -34),
 			shadowSize : new n.Point(41, 41)
@@ -1181,7 +1181,7 @@
 			if (this.options[e])
 				return this.options[e];
 			//n.Browser.retina && "icon" === t && (t += "@2x");
-			var i = 'assets/images/marker-icon.png';
+			var i = '../../assets/images/marker-icon.png';
 			if (!i)
 				throw Error("Couldn't autodetect L.Icon.Default.imagePath, set it manually.");
 			return i 
